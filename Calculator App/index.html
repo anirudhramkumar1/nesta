@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mortgage & HEI Scenario Calculator</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="wrapper">
+        <h1>Mortgage &amp; HEI Scenario Calculator</h1>
+        <p>
+          Compare traditional financing against a Home Equity Investment (HEI)
+          structure. Enter your assumptions below and review the calculated
+          monthly mortgage payment and total interest paid for each scenario.
+        </p>
+      </div>
+    </header>
+
+    <main class="wrapper">
+      <section class="card">
+        <form id="calculator-form">
+          <div class="form-grid">
+            <label class="input-field">
+              <span>Home Price (Purchase Price)</span>
+              <input
+                type="number"
+                id="homePrice"
+                min="0"
+                step="1000"
+                placeholder="550000"
+                required
+              />
+            </label>
+
+            <label class="input-field">
+              <span>Down Payment %</span>
+              <input
+                type="number"
+                id="downPaymentPct"
+                min="0"
+                max="100"
+                step="0.01"
+                placeholder="20"
+                required
+              />
+            </label>
+
+            <label class="input-field">
+              <span>Traditional Rate (APR, annual %)</span>
+              <input
+                type="number"
+                id="traditionalRate"
+                min="0"
+                step="0.01"
+                placeholder="6.75"
+                required
+              />
+            </label>
+
+            <label class="input-field">
+              <span>HEI Rate (APR, annual %)</span>
+              <input
+                type="number"
+                id="heiRate"
+                min="0"
+                step="0.01"
+                placeholder="6.25"
+                required
+              />
+            </label>
+
+            <label class="input-field">
+              <span>Term (years)</span>
+              <input
+                type="number"
+                id="termYears"
+                min="1"
+                max="50"
+                step="1"
+                placeholder="30"
+                required
+              />
+            </label>
+
+            <label class="input-field">
+              <span>HEI Upfront Fee % of Home Price (optional)</span>
+              <input
+                type="number"
+                id="heiUpfrontFeePct"
+                min="0"
+                max="100"
+                step="0.01"
+                placeholder="1.75"
+              />
+            </label>
+
+            <label class="input-field">
+              <span>HEI Equity Share Multiplier</span>
+              <input
+                type="number"
+                id="heiEquityShareMultiplier"
+                min="0"
+                step="0.01"
+                placeholder="0.5"
+              />
+            </label>
+
+            <label class="input-field">
+              <span>Annual Home Appreciation %</span>
+              <input
+                type="number"
+                id="homeAppreciationPct"
+                min="-100"
+                max="200"
+                step="0.01"
+                placeholder="3.25"
+              />
+            </label>
+
+            <label class="input-field">
+              <span>Property Tax % of Home Price (annual)</span>
+              <input
+                type="number"
+                id="propertyTaxPct"
+                min="0"
+                max="100"
+                step="0.01"
+                placeholder="1.1"
+              />
+            </label>
+
+            <label class="input-field">
+              <span>Insurance (annual $)</span>
+              <input
+                type="number"
+                id="insuranceAnnual"
+                min="0"
+                step="50"
+                placeholder="1200"
+              />
+            </label>
+
+            <label class="input-field">
+              <span>Maintenance % of Home Price (annual)</span>
+              <input
+                type="number"
+                id="maintenancePct"
+                min="0"
+                max="100"
+                step="0.01"
+                placeholder="1"
+              />
+            </label>
+
+            <label class="input-field">
+              <span>HOA (annual $)</span>
+              <input
+                type="number"
+                id="hoaAnnual"
+                min="0"
+                step="50"
+                placeholder="600"
+              />
+            </label>
+
+            <label class="input-field">
+              <span>Selling Cost % of Sale Price</span>
+              <input
+                type="number"
+                id="sellingCostPct"
+                min="0"
+                max="100"
+                step="0.01"
+                placeholder="6"
+              />
+            </label>
+
+            <label class="input-field">
+              <span>Holding Periods (years, comma separated)</span>
+              <input
+                type="text"
+                id="holdingPeriods"
+                placeholder="5,7,10"
+              />
+            </label>
+
+            <label class="input-field">
+              <span>Discount Rate for NPV (annual %, optional)</span>
+              <input
+                type="number"
+                id="discountRatePct"
+                min="-100"
+                max="200"
+                step="0.01"
+                placeholder="5"
+              />
+            </label>
+
+            <label class="input-field">
+              <span>Model Start Date (first cashflow month)</span>
+              <input type="month" id="modelStartDate" />
+            </label>
+
+            <label class="input-field">
+              <span>HEI Plug-In Share % (20% - Down Payment %)</span>
+              <input
+                type="number"
+                id="heiPlugInSharePct"
+                min="0"
+                max="100"
+                step="0.01"
+                placeholder="10"
+              />
+            </label>
+
+            <label class="input-field">
+              <span>HEI Plug-In Investor Rate (annual %)</span>
+              <input
+                type="number"
+                id="heiInvestorRatePct"
+                min="0"
+                max="100"
+                step="0.01"
+                placeholder="9"
+              />
+            </label>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn primary">Calculate</button>
+            <button type="reset" class="btn ghost">Reset</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card results-card">
+        <h2>Monthly Mortgage Summary</h2>
+        <div class="results-grid" id="resultsGrid">
+          <p class="muted">
+            Enter your assumptions and click <strong>Calculate</strong> to view
+            results.
+          </p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Assumption Notes</h2>
+        <ul class="notes-list">
+          <li>
+            Percent-based inputs should be entered as whole percentages
+            (e.g.&nbsp;<code>20</code> for 20%).
+          </li>
+          <li>
+            HEI Plug-In Share defaults to the difference between a 20% down
+            payment and the entered Down Payment %, but you can override it for
+            custom structures.
+          </li>
+          <li>
+            The calculator currently focuses on mortgage payment and interest
+            totals. Additional cashflow outputs can be layered on using the
+            provided assumptions.
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <div class="wrapper">
+        Built for rapid HEI scenario exploration. Customize the assumptions to
+        reflect your investment structure.
+      </div>
+    </footer>
+
+    <script src="./app.js" type="module"></script>
+  </body>
+</html>
