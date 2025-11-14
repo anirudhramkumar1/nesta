@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mortgage Payment Comparison</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Mortgage Payment Comparison</h1>
+      <p>Compare your current mortgage payment against a 20% down scenario.</p>
+    </header>
+
+    <form id="mortgage-form" novalidate>
+      <div class="field">
+        <label for="homePrice">Home Price</label>
+        <div class="input-group">
+          <span class="prefix">$</span>
+          <input type="number" id="homePrice" name="homePrice" inputmode="decimal" min="0" step="0.01" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="downPayment">Down Payment</label>
+        <div class="input-group">
+          <span class="prefix">$</span>
+          <input type="number" id="downPayment" name="downPayment" inputmode="decimal" min="0" step="0.01" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="termYears">Term (years)</label>
+        <input type="number" id="termYears" name="termYears" inputmode="numeric" min="1" max="40" step="1" required>
+      </div>
+
+      <div class="field">
+        <label for="monthlyPayment">Current Monthly Payment</label>
+        <div class="input-group">
+          <span class="prefix">$</span>
+          <input type="number" id="monthlyPayment" name="monthlyPayment" inputmode="decimal" min="0" step="0.01" required>
+        </div>
+        <p class="hint">Enter your current monthly principal &amp; interest payment (exclude taxes and insurance).</p>
+      </div>
+
+      <button type="submit">Calculate</button>
+      <p id="form-error" class="error" role="alert" hidden></p>
+    </form>
+
+    <section id="results" class="results" hidden>
+      <h2>Results</h2>
+      <div id="analysis"></div>
+    </section>
+  </main>
+
+  <template id="result-template">
+    <article class="result-card">
+      <h3></h3>
+      <dl>
+        <div>
+          <dt>Loan Amount</dt>
+          <dd class="loan-amount"></dd>
+        </div>
+        <div>
+          <dt>Monthly Payment (Principal &amp; Interest)</dt>
+          <dd class="monthly-payment"></dd>
+        </div>
+        <div>
+          <dt>Estimated Interest Rate (APR)</dt>
+          <dd class="interest-rate"></dd>
+        </div>
+        <div class="down-payment-row">
+          <dt>Down Payment</dt>
+          <dd class="down-payment"></dd>
+        </div>
+      </dl>
+    </article>
+  </template>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
