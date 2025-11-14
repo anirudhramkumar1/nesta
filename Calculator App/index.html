@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mortgage Payment Comparison</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <h1>Mortgage Payment Comparison</h1>
+        <p>
+          Compare your current mortgage scenario with one that includes a 20% down
+          payment. Enter the details of your purchase and see how the monthly
+          payments stack up.
+        </p>
+      </header>
+
+      <section class="card form-card">
+        <form id="mortgage-form" novalidate>
+          <div class="field">
+            <label for="homePrice">Home Price ($)</label>
+            <input
+              type="number"
+              id="homePrice"
+              name="homePrice"
+              inputmode="decimal"
+              min="0"
+              step="1000"
+              placeholder="450000"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="downPayment">Down Payment ($)</label>
+            <input
+              type="number"
+              id="downPayment"
+              name="downPayment"
+              inputmode="decimal"
+              min="0"
+              step="1000"
+              placeholder="45000"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="interestRate">Interest Rate (APR %)</label>
+            <input
+              type="number"
+              id="interestRate"
+              name="interestRate"
+              inputmode="decimal"
+              min="0"
+              step="0.01"
+              placeholder="6.75"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="termYears">Loan Term (years)</label>
+            <input
+              type="number"
+              id="termYears"
+              name="termYears"
+              min="1"
+              step="1"
+              placeholder="30"
+              required
+            />
+          </div>
+
+          <button type="submit">Calculate payments</button>
+          <p class="helper-text">
+            * Interest rate is required for a traditional fixed-rate mortgage
+            calculation.
+          </p>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="card results-card" id="results" aria-live="polite" hidden>
+        <div>
+          <p class="eyebrow">Based on your inputs</p>
+          <h2 id="summaryTitle">Estimated Monthly Payments</h2>
+        </div>
+        <div class="results-grid">
+          <article class="result-block">
+            <h3>Entered Down Payment</h3>
+            <p class="payment" id="actualPayment">&mdash;</p>
+            <ul>
+              <li><span>Loan amount:</span> <strong id="actualLoan">&mdash;</strong></li>
+              <li><span>Down payment %:</span> <strong id="actualDownPct">&mdash;</strong></li>
+            </ul>
+          </article>
+
+          <article class="result-block" id="scenarioTwenty" hidden>
+            <h3>With 20% Down</h3>
+            <p class="payment" id="twentyPayment">&mdash;</p>
+            <ul>
+              <li><span>Loan amount:</span> <strong id="twentyLoan">&mdash;</strong></li>
+              <li><span>Down payment %:</span> <strong>20%</strong></li>
+            </ul>
+          </article>
+        </div>
+        <p class="delta" id="deltaMessage"></p>
+      </section>
+    </main>
+
+    <footer class="footnote">
+      <small>
+        Calculations assume a fixed-rate mortgage and do not include taxes,
+        insurance, or PMI. Always consult with your lender for precise numbers.
+      </small>
+    </footer>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>
